@@ -1,95 +1,45 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+import Link from 'next/link'
+import {getPosts} from '@/lib/newt'
+import styles from '@/app/page.module.css'
+import type {Metadata} from 'next'
+import Image from 'next/image'
+import List from '@/app/components/List'
+import TopHeader from '@/app/components/TopHeader'
+import HeaderNav from '@/app/components/HeaderNav'
+import Article from '@/app/components/Article'
 
-export default function Home() {
+export const metadata:Metadata = {
+  title: 'Newt/Next.jsブログ',
+  description: 'NewtとNext.jsを利用したブログ。'
+}
+
+export default async function Home() {
+  const posts = await getPosts()
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>src/app/page.tsx</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+    <main>
+      <HeaderNav />
+      <TopHeader>
+        <h1>NEXT STEP OF YOUR FUTURE</h1>
+      </TopHeader>
+      <Article>
+        <div className="articleBody">
+          <p>このサイトはReact（Next.js）の学習用に現在作成中です。</p>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi totam animi quos hic ipsum facere a? Aperiam est molestiae provident repudiandae vel vitae? Beatae necessitatibus sit qui amet, temporibus voluptates!</p>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe ratione sint harum quibusdam inventore, placeat quo debitis excepturi doloribus amet expedita, animi labore veritatis alias adipisci natus sed vitae voluptates?</p>
         </div>
-      </div>
-
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore starter templates for Next.js.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
+      </Article>
+      <List>
+        {posts.map((post) => {
+          return (
+            <li key={post._id}>
+              <Link href={`post/${post.slug}`}>
+                <Image src={post.eyecatch.src} width={post.eyecatch.width} height={post.eyecatch.height} alt="" />
+                {post.title}
+              </Link>
+            </li>
+          )
+        })}
+      </List>
     </main>
-  );
+  )
 }
