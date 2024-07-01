@@ -7,6 +7,7 @@ import List from '@/app/components/List'
 import HeaderNav from '@/app/components/HeaderNav'
 import SubWrapper from '@/app/components/SubWrapper'
 import Article from '@/app/components/Article'
+import Breadcrumbs from '@/app/components/Breadcrumbs'
 
 export const metadata:Metadata = {
   title: 'ブログ一覧 | Newt/Next.jsブログ',
@@ -17,6 +18,7 @@ export default async function Home() {
   const posts = await getPosts()
   return (
     <SubWrapper>
+      <Breadcrumbs />
       <HeaderNav />
       <Article>
         <h1 className='ttl'>ブログ一覧</h1>

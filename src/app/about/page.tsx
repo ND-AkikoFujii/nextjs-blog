@@ -7,6 +7,7 @@ import SubHeader from '@/app/components/SubHeader'
 import Article from '../components/Article'
 import Image from 'next/image'
 import SubWrapper from '@/app/components/SubWrapper'
+import Breadcrumbs from '@/app/components/Breadcrumbs'
 
 export const metadata:Metadata = {
   title: 'ABOUT | Newt/Next.jsブログ',
@@ -19,6 +20,7 @@ export default async function About() {
 
   return(
     <SubWrapper>
+      <Breadcrumbs />
       <HeaderNav />
       <Article>
         <h1 className='ttl'>{post.title}</h1>

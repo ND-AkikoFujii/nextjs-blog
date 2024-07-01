@@ -7,6 +7,7 @@ import List from '@/app/components/List'
 import TopHeader from '@/app/components/TopHeader'
 import HeaderNav from '@/app/components/HeaderNav'
 import Article from '@/app/components/Article'
+import Breadcrumbs from '@/app/components/Breadcrumbs'
 
 export const metadata:Metadata = {
   title: 'Newt/Next.jsブログ',
@@ -21,6 +22,7 @@ export default async function Home() {
       <TopHeader>
         <h1>NEXT STEP OF YOUR FUTURE</h1>
       </TopHeader>
+      <Breadcrumbs />
       <Article>
         <div className="articleBody">
           <p>このサイトはReact（Next.js）の学習用に現在作成中です。</p>

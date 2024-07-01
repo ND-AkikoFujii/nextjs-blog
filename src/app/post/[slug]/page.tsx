@@ -6,6 +6,8 @@ import Image from 'next/image'
 import Article from '@/app/components/Article'
 import HeaderNav from '@/app/components/HeaderNav'
 import SubWrapper from '@/app/components/SubWrapper'
+import Breadcrumbs from '@/app/components/Breadcrumbs'
+
 
 type Props = {
   params: {
@@ -30,7 +32,7 @@ export const generateMetadata = async ({params}: Props): Promise<Metadata> => {
     title: post?.title,
     description: '詳細ページです'
   }
-} 
+}
 
 export default async function Post({params}: Props) {
   const {slug} = params
@@ -39,6 +41,7 @@ export default async function Post({params}: Props) {
 
   return(
     <SubWrapper>
+      <Breadcrumbs />
       <HeaderNav />
       <Article>
         <h1 className='ttl'>{post.title}</h1>
