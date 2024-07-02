@@ -17,7 +17,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ja">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        {children}
+        <footer style={{textAlign: "center"}}>©react練習</footer>
+      </body>
     </html>
   );
 }

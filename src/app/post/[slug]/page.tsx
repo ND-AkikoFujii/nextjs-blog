@@ -5,8 +5,9 @@ import type {Post} from '@/app/types/post'
 import Image from 'next/image'
 import Article from '@/app/components/Article'
 import HeaderNav from '@/app/components/HeaderNav'
+import { BreadcrumbItem } from '@/types/breadcrumb'
+import { BreadcrumbList } from '@/app/components/BreadcrumbList'
 import SubWrapper from '@/app/components/SubWrapper'
-import Breadcrumbs from '@/app/components/Breadcrumbs'
 
 
 type Props = {
@@ -39,9 +40,29 @@ export default async function Post({params}: Props) {
   const post = await getPostBySlug(slug)
   if(!post) return
 
+  const breadcrumbData: BreadcrumbItem[] = [
+    {
+      '@type': 'ListItem',
+      position: 1,
+      name: '',
+      item: '/'
+    },
+    {
+      '@type': 'ListItem',
+      position: 2,
+      name: 'Blog',
+      item: '/post',
+    },
+    {
+      '@type': 'ListItem',
+      position: 3,
+      name: post.title
+    }
+  ]
+
   return(
     <SubWrapper>
-      <Breadcrumbs />
+      <BreadcrumbList breadcrumbData={breadcrumbData}  />
       <HeaderNav />
       <Article>
         <h1 className='ttl'>{post.title}</h1>

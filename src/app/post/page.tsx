@@ -7,18 +7,33 @@ import List from '@/app/components/List'
 import HeaderNav from '@/app/components/HeaderNav'
 import SubWrapper from '@/app/components/SubWrapper'
 import Article from '@/app/components/Article'
-import Breadcrumbs from '@/app/components/Breadcrumbs'
+import { BreadcrumbItem } from '@/types/breadcrumb'
+import { BreadcrumbList } from '@/app/components/BreadcrumbList'
 
 export const metadata:Metadata = {
   title: 'ブログ一覧 | Newt/Next.jsブログ',
   description: 'NewtとNext.jsを利用したブログ。'
 }
 
+const breadcrumbData: BreadcrumbItem[] = [
+  {
+    '@type': 'ListItem',
+    position: 1,
+    name: '',
+    item: '/'
+  },
+  {
+    '@type': 'ListItem',
+    position: 2,
+    name: 'Blog',
+    item: '/post',
+  }
+]
 export default async function Home() {
   const posts = await getPosts()
   return (
     <SubWrapper>
-      <Breadcrumbs />
+      <BreadcrumbList breadcrumbData={breadcrumbData} />
       <HeaderNav />
       <Article>
         <h1 className='ttl'>ブログ一覧</h1>

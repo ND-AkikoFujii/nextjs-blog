@@ -7,6 +7,7 @@ const HeaderNavStyle = styled.header`
   position: fixed;
   left: 0;
   top: 0;
+  width: 100%;
   color: #fff;
   background: rgb(0 0 0 / .5);
   ul{

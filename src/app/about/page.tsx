@@ -7,12 +7,28 @@ import SubHeader from '@/app/components/SubHeader'
 import Article from '../components/Article'
 import Image from 'next/image'
 import SubWrapper from '@/app/components/SubWrapper'
-import Breadcrumbs from '@/app/components/Breadcrumbs'
+import { BreadcrumbItem } from '@/types/breadcrumb'
+import { BreadcrumbList } from '@/app/components/BreadcrumbList'
 
 export const metadata:Metadata = {
   title: 'ABOUT | Newt/Next.jsブログ',
   description: 'NewtとNext.jsを利用したブログ。'
 }
+
+const breadcrumbData: BreadcrumbItem[] = [
+  {
+    '@type': 'ListItem',
+    position: 1,
+    name: '',
+    item: '/'
+  },
+  {
+    '@type': 'ListItem',
+    position: 2,
+    name: 'About',
+    item: '/about',
+  }
+]
 
 export default async function About() {
   const post = await getAbout()
@@ -20,7 +36,7 @@ export default async function About() {
 
   return(
     <SubWrapper>
-      <Breadcrumbs />
+      <BreadcrumbList breadcrumbData={breadcrumbData} />
       <HeaderNav />
       <Article>
         <h1 className='ttl'>{post.title}</h1>
