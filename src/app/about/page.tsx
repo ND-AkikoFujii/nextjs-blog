@@ -7,7 +7,7 @@ import SubHeader from '@/app/components/SubHeader'
 import Article from '../components/Article'
 import Image from 'next/image'
 import SubWrapper from '@/app/components/SubWrapper'
-import { BreadcrumbItem } from '@/types/breadcrumb'
+import { BreadcrumbItem } from '@/app/types/breadcrumb'
 import { BreadcrumbList } from '@/app/components/BreadcrumbList'
 
 export const metadata:Metadata = {
