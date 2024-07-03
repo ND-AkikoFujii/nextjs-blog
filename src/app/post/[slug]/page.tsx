@@ -5,7 +5,7 @@ import type {Post} from '@/app/types/post'
 import Image from 'next/image'
 import Article from '@/app/components/Article'
 import HeaderNav from '@/app/components/HeaderNav'
-import { BreadcrumbItem } from '@/types/breadcrumb'
+import { BreadcrumbItem } from '@/app/types/breadcrumb'
 import { BreadcrumbList } from '@/app/components/BreadcrumbList'
 import SubWrapper from '@/app/components/SubWrapper'
 
