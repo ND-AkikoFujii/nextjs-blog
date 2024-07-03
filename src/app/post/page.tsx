@@ -7,7 +7,7 @@ import List from '@/app/components/List'
 import HeaderNav from '@/app/components/HeaderNav'
 import SubWrapper from '@/app/components/SubWrapper'
 import Article from '@/app/components/Article'
-import { BreadcrumbItem } from '@/types/breadcrumb'
+import { BreadcrumbItem } from '@/app/types/breadcrumb'
 import { BreadcrumbList } from '@/app/components/BreadcrumbList'
 
 export const metadata:Metadata = {
