@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import {getPosts, getPostsWithParam} from '@/lib/newt'
+import {getPosts} from '@/lib/newt'
 import styles from '@/app/page.module.css'
 import type {Metadata} from 'next'
 import Image from 'next/image'
@@ -7,7 +7,10 @@ import List from '@/app/components/List'
 import HeaderNav from '@/app/components/HeaderNav'
 import SubWrapper from '@/app/components/SubWrapper'
 import Article from '@/app/components/Article'
-import {Pagination} from '@/app/components/Pagination'
+<<<<<<< Updated upstream
+=======
+import {Pager} from '@/app/components/Pager'
+>>>>>>> Stashed changes
 import { BreadcrumbItem } from '@/app/types/breadcrumb'
 import { BreadcrumbList } from '@/app/components/BreadcrumbList'
 
@@ -30,17 +33,11 @@ const breadcrumbData: BreadcrumbItem[] = [
     item: '/post',
   }
 ]
-export default async function Home({
-  searchParams
-} : {
-  searchParams: { [key: string]: string | string[] | undefined }
-}) {
-  const id = searchParams.id
-  const idInt = typeof(id) === 'string' ? parseInt(id, 10) : 1
-  const limit = 3
-  const skip = limit * (idInt - 1)
+export default async function Home() {
+  const limit = 5
+  const skip = limit * 1
 
-  const posts = await getPostsWithParam(limit, skip)
+  const posts = await getPosts(limit, skip)
   return (
     <SubWrapper>
       <BreadcrumbList breadcrumbData={breadcrumbData} />
@@ -48,7 +45,7 @@ export default async function Home({
       <Article>
         <h1 className='ttl'>ブログ一覧</h1>
         <List>
-          {posts.items.map((post) => {
+          {posts.map((post) => {
             return (
               <li key={post._id}>
                 <Link href={`post/${post.slug}`}>
@@ -59,7 +56,7 @@ export default async function Home({
             )
           })}
         </List>
-        <Pagination skip={skip} limit={limit} total={posts.total} currentPageNo={idInt} />
+        <Pager totalCount={posts.length} />
       </Article>
     </SubWrapper>
   )

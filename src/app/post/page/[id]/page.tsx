@@ -15,7 +15,6 @@ export const metadata:Metadata = {
   title: 'ブログ一覧 | Newt/Next.jsブログ',
   description: 'NewtとNext.jsを利用したブログ。'
 }
-
 const breadcrumbData: BreadcrumbItem[] = [
   {
     '@type': 'ListItem',
@@ -30,15 +29,24 @@ const breadcrumbData: BreadcrumbItem[] = [
     item: '/post',
   }
 ]
+
+type Props = {
+  params: {
+    id: number
+  }
+}
+
 export default async function Home({
-  searchParams
+  params
 } : {
-  searchParams: { [key: string]: string | string[] | undefined }
+  params: { id: string }
 }) {
-  const id = searchParams.id
+  const id = params.id
   const idInt = typeof(id) === 'string' ? parseInt(id, 10) : 1
   const limit = 3
   const skip = limit * (idInt - 1)
+  console.log(params)
+
 
   const posts = await getPostsWithParam(limit, skip)
   return (

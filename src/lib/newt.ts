@@ -10,15 +10,36 @@ const client = createClient({
   apiType: 'cdn'
 })
 
-export const getPosts = cache(async () => {
+export const getPosts = cache(async (
+  limit = 100,
+  skip = 0
+) => {
   const {items} = await client.getContents<Post>({
     appUid: 'blog',
     modelUid: 'post',
     query: {
-      select: ['_id', 'title', 'eyecatch', 'slug', 'body']
+      select: ['_id', 'title', 'eyecatch', 'slug', 'body'],
+      limit: limit,
+      skip: skip
     }
   })
   return items
+})
+
+export const getPostsWithParam = cache(async (
+  limit = 100,
+  skip = 0
+) => {
+  const data = await client.getContents<Post>({
+    appUid: 'blog',
+    modelUid: 'post',
+    query: {
+      select: ['_id', 'title', 'eyecatch', 'slug', 'body'],
+      limit: limit,
+      skip: skip
+    }
+  })
+  return data
 })
 
 export const getPostBySlug = cache(async (slug: string) => {

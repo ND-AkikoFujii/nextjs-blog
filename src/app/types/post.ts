@@ -8,4 +8,7 @@ export interface Post {
   }
   body: string
   slug: string
+  limit: number
+  skip: number
+  total: number
 }
